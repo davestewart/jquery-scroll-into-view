@@ -7,7 +7,7 @@
  * @author Dave Stewart
  * @date 14 March 2017
  */
-(function ($) {
+function init ($) {
   /**
    * @property  {Number|String|HTMLElement}   vt          Viewport top; can be a number, selector or element
    * @property  {Number|String|HTMLElement}   vb          Viewport bottom; can be a number, selector or element
@@ -155,4 +155,35 @@
 
   // assign plugin
   $.fn.scrollIntoView = scrollIntoView
-})(jQuery)
+}
+
+/**
+ * UMD loader
+ *
+ * Uses CommonJS, AMD or browser globals to create a jQuery plugin
+ *
+ * @see https://github.com/umdjs/umd/blob/master/templates/jqueryPlugin.js
+ */
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory)
+  } else if (typeof module === 'object' && module.exports) {
+    // Node/CommonJS
+    module.exports = function (root, jQuery) {
+      if (jQuery === undefined) {
+        if (typeof window !== 'undefined') {
+          jQuery = require('jquery')
+        }
+        else {
+          jQuery = require('jquery')(root)
+        }
+      }
+      factory(jQuery)
+      return jQuery
+    }
+  } else {
+    // Browser globals
+    factory(jQuery)
+  }
+}(init))
