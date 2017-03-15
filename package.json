@@ -2,7 +2,7 @@
   "name": "jquery-scroll-into-view",
   "title": "jQuery Scroll Into View",
   "description": "A jquery plugin to scroll an element into view, with a few helpful features / options",
-  "version": "1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/davestewart/jquery-scroll-into-view",
   "author": {
     "name": "Dave Stewart",
