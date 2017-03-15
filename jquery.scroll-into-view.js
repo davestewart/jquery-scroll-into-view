@@ -55,7 +55,7 @@
 
   function getSelectionBounds (elements) {
     var bounds = null
-    getAllElements(elements)
+    elements
       .forEach(function (element) {
         var b = getElementBounds(element)
         if (!bounds) {
@@ -138,7 +138,10 @@
 
   // jQuery plugin function
   var scrollIntoView = function (options) {
-    scroll(this.toArray(), options)
+    var elements = getAllElements(this.toArray())
+    if (elements.length) {
+      scroll(elements, options)
+    }
     return this
   }
 
