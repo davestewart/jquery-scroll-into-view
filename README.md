@@ -17,7 +17,7 @@ The plugin has options for:
  - forcing scrolling, even if on-screen
  - scroll duration
 
-### Usage
+## Usage
 
 Scroll an element into view with default settings (no header or footer, 20px padding):
 
@@ -43,7 +43,8 @@ Scroll an element's container and its absolutely-positioned (so out of document 
 var elements = [$(el).parent(), $(el).find('.dropdown')] // note passing of elements as array
 $(elements).scrollIntoView({vt: '#nav'})
 ```
-    
+   
+## Options
 
 ### Default options
 
@@ -103,8 +104,6 @@ Pass a custom scroll function:
 ```js
 {fn: scrollEl}      // Call scrollEl(top, options, values)
 ```
-
-
 
 The `options` parameter is the plugin's current options, and the `values` parameter is the current calculations – should you wish to perform additional operations – and is as follows (example values shown):
 
