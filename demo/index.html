@@ -1,373 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>jQuery - Scroll into View</title>
-	<!-- 3rd party -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<script src="assets/js/jquery.min.js"></script>
+    <title>jQuery - Scroll into View</title>
+    <!-- 3rd party -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/js/jquery.min.js"></script>
 
-	<!-- custom scroll -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
+    <!-- custom scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
 
-	<!-- syntax highlighting -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/paraiso-light.min.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/paraiso-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
 
-	<!-- lib -->
-	<link href="assets/css/styles.css" rel="stylesheet">
-	<script src="lib/jquery.scroll-into-view.js"></script>
-	<script>!$.fn.scrollIntoView && document.write('<script src="https://cdn.rawgit.com/davestewart/jquery-scroll-into-view/c53c2f0b/lib/jquery.scroll-into-view.js"></scr' + 'ipt>')</script>
+    <!-- lib -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <script src="lib/jquery.scroll-into-view.js"></script>
+    <script>!$.fn.scrollIntoView && document.write('<script src="https://cdn.rawgit.com/davestewart/jquery-scroll-into-view/c53c2f0b/lib/jquery.scroll-into-view.js"></scr' + 'ipt>')</script>
 </head>
 <body>
 
 <header>
-	<p><a href="#home">Home</a></p>
+    <p><a href="#home">Home</a></p>
 </header>
 
 <main>
 
-	<section id="help">
-		<h1>Scroll Into View Demo</h1>
-		<div id="slides">
-			<div id="home" data-callback="reset">
-				<legend>Home</legend>
-				<p>Welcome to the jQuery Scroll Into View demo.</p>
-				<p>The available demos are:</p>
-				<ul id="contents">
-					<!-- populated dynamically -->
-				</ul>
-				<p>Note that <strong>all</strong> code samples are <strong>clickable</strong> !</p>
-				<pre>$('.item-4').scrollIntoView()</pre>
-				<button class="btn btn-primary btn-sm">Start</button>
-			</div>
-			<div id="overview">
-				<legend>Overview</legend>
-				<p>Scroll into View is designed to scroll partial or fully off-screen elements into view.</p>
-				<p>Elements at the bottom are scrolled up:</p>
-				<pre>$('.item-5').scrollIntoView()</pre>
-				<p>Elements at the top are scrolled down:</p>
-				<pre>$('.item-1').scrollIntoView()</pre>
-				<p>Elements which are taller than the viewport will be scrolled to show the top:</p>
-				<pre>$('.tall').scrollIntoView()</pre>
-			</div>
-			<div id="defaults">
-				<legend>Defaults</legend>
-				<p>Set per-call parameters by passing options:</p>
-				<pre>$('.item-3').scrollIntoView({pt: 'auto', force: true}) // this call</pre>
-				<p>Set options for <strong>all future calls</strong>, pass options directly to the plugin prototype:</p>
-				<pre>$.fn.scrollIntoView.options({ // every call
+    <section id="help">
+        <h1>Scroll Into View Demo</h1>
+        <div id="slides">
+
+            <div id="home" data-enter="reset">
+                <legend>Home</legend>
+                <p>Welcome to the jQuery Scroll Into View demo.</p>
+                <p>Click to view a feature:</p>
+                <ul id="contents">
+                    <!-- populated dynamically -->
+                </ul>
+                <p>Note that code samples with borders are <strong>clickable</strong> !</p>
+                <pre>$('.item-4').scrollIntoView()</pre>
+                <button class="btn btn-primary btn-sm">Start</button>
+            </div>
+
+            <div id="usage">
+                <legend>Basic usage</legend>
+                <p>Scroll into View is designed to scroll partial or fully off-screen elements into view.</p>
+                <p>Elements at the bottom are scrolled up:</p>
+                <pre>$('.item-5').scrollIntoView()</pre>
+                <p>Elements at the top are scrolled down:</p>
+                <pre>$('.item-1').scrollIntoView()</pre>
+                <p>Elements which are taller than the viewport will be scrolled to show the top:</p>
+                <pre>$('.tall').scrollIntoView()</pre>
+            </div>
+
+            <div id="options">
+                <legend>Options</legend>
+                <p>Set parameters per call by passing an options object:</p>
+                <pre>$('.item-3').scrollIntoView({pt: '20%', force: true})</pre>
+                <p>Values will extend the defaults:</p>
+                <pre class="static">{
+    vt: 0,
+    vb: 0,
+    pt: 20,
+    pb: 20,
+    bounds: null,
+    fn: null,
+    force: false,
+    duration: 400
+}</pre>
+                <p>Information on the available options can be seen in the <a
+                    href="https://github.com/davestewart/jquery-scroll-into-view/blob/master/README.md#available-options">online
+                    docs</a>.</p>
+            </div>
+
+            <div id="defaults" data-exit="setOptions">
+                <legend>Defaults</legend>
+                <p>Permanently set the defaults by calling the <code>options()</code> method directly on the plugin:</p>
+                <pre class="static">$.fn.scrollIntoView.options({
     duration: 1000,
     force: true,
     pt: 'auto',
     pb: 50
 })</pre>
-				<p>View defaults by calling the function without parameters:</p>
-				<pre>console.log($.fn.scrollIntoView.options())</pre>
-				<p>Available options can be seen in the <a href="https://github.com/davestewart/jquery-scroll-into-view/blob/master/README.md#available-options">online docs</a>.</p>
-			</div>
-			<div id="headers">
-				<legend>Headers</legend>
-				<p>The plugin is designed to work with headers and footers:</p>
-				<pre>$('.item-2').scrollIntoView()</pre>
-				<pre>$('.item-5').scrollIntoView()</pre>
-				<p>To set <a href="#defaults">defaults</a> for header and footer, set <code>vt</code> and <code>vb</code> (viewport top and bottom):</p>
-				<pre>$.fn.scrollIntoView.options({vt: 'header', vb: 'footer'}) // preferred</pre>
-				<pre>$.fn.scrollIntoView.options({vt: 100, vb: 50})</pre>
-			</div>
-			<div id="padding">
-				<legend>Padding</legend>
-				<p>Scrolled elements get 20px top and bottom padding by default.</p>
-				<p>You can change this by updating <a href="#defaults">the defaults</a>, or overriding parameters <code>pt</code> and <code>pb</code> (padding top and bottom) with pixel or percent values.</p>
-				<pre>$('.item-2').scrollIntoView({pt: 0})</pre>
-				<pre>$('.item-2').scrollIntoView({pt: 75})</pre>
-				<pre>$('.item-2').scrollIntoView({pt: '30%'})</pre>
-				<pre>$('.item-5').scrollIntoView({pb: 100})</pre>
-				<p>Setting <code>pt</code> to <code>'auto'</code> aligns the element to the middle of the viewport (equal to <code>pt: '50%'</code>).</p>
-				<pre>$('.item-3').scrollIntoView({pt: 'auto'})</pre>
-			</div>
-			<div id="groups">
-				<legend>Groups</legend>
-				<p>You can scroll groups of items by passing multiple selectors</p>
-				<pre>$('.item-4, .item-5').scrollIntoView()</pre>
-			</div>
-			<div id="absolute">
-				<legend>Absolutely-positioned elements</legend>
-				<p>For items which don't correctly report their height, for example custom dropdown menus with absolutely-positioned children:</p>
-				<pre>$('.dropdown').scrollIntoView()</pre>
-				<p>Pass <strong>all</strong> the elements to be analysed for height as an <code>array</code>:</p>
-				<pre>$(['.dropdown', '.dropdown-menu']).scrollIntoView()</pre>
-				<p>You may also pass the bounds directly (useful for canvas child-elements):</p>
-				<pre>$('.dropdown').scrollIntoView({bounds: getDropdownBounds()})</pre>
-			</div>
-			<div id="scroll">
-				<legend>Custom scroll function</legend>
-				<p>You can call a custom scroll function by passing a callback:</p>
-				<pre>$('.item-2').scrollIntoView({fn: function (value) {
-    TweenLite.to(document.body, 1, {scrollTop: value, ease:Back.easeOut})
-}})</pre>
-				<pre>$('.item-5').scrollIntoView({pt: 'auto', fn: function (value) {
+                <p>View current defaults by calling the function without parameters:</p>
+                <pre>console.log($.fn.scrollIntoView.options())</pre>
+            </div>
+
+            <div id="headers">
+                <legend>Margin</legend>
+                <p>The plugin is designed to work with headers and footers:</p>
+                <pre>$('.item-2').scrollIntoView()</pre>
+                <pre>$('.item-5').scrollIntoView()</pre>
+                <p>To set <a href="#options">defaults</a> for header and footer, set <code>vt</code> and <code>vb</code>
+                    (viewport top and bottom):</p>
+                <pre class="static">$.fn.scrollIntoView.options({vt: 'header', vb: 'footer'})</pre>
+            </div>
+
+            <div id="padding">
+                <legend>Padding</legend>
+                <p>Scrolled elements get 20px top and bottom padding by default.</p>
+                <p>You can change this by updating <a href="#options">the defaults</a>, or overriding parameters <code>pt</code>
+                    and <code>pb</code> (padding top and bottom) with pixel or percent values.</p>
+                <pre>$('.item-2').scrollIntoView({pt: 0})</pre>
+                <pre>$('.item-2').scrollIntoView({pt: 75})</pre>
+                <pre>$('.item-2').scrollIntoView({pt: '30%'})</pre>
+                <pre>$('.item-5').scrollIntoView({pb: 100})</pre>
+                <p>Setting <code>pt</code> to <code>'auto'</code> aligns the element to the middle of the viewport
+                    (equal to <code>pt: '50%'</code>).</p>
+                <pre>$('.item-3').scrollIntoView({pt: 'auto'})</pre>
+            </div>
+
+            <div id="groups">
+                <legend>Groups</legend>
+                <p>You can scroll groups of items by passing multiple selectors</p>
+                <pre>$('.item-4, .item-5').scrollIntoView()</pre>
+            </div>
+
+            <div id="absolute">
+                <legend>Absolutely-positioned elements</legend>
+                <p>For items which don't correctly report their height, for example custom dropdown menus with
+                    absolutely-positioned children...</p>
+                <pre>$('.dropdown').scrollIntoView()</pre>
+                <p>...pass <strong>all</strong> the elements to be analysed for height as an <code>array</code>:</p>
+                <pre>$(['.dropdown', '.dropdown-menu']).scrollIntoView()</pre>
+                <p>You may also pass the bounds directly (useful for canvas child-elements):</p>
+                <pre>$('.dropdown').scrollIntoView({bounds: getDropdownBounds()})</pre>
+            </div>
+
+            <div id="scroll">
+                <legend>Custom scroll function</legend>
+                <p>You can call a custom scroll function by passing a callback:</p>
+                <pre>$('.item-5').scrollIntoView({fn: function (value) {
     TweenLite.to(document.body, 2, {scrollTop: value, ease:Elastic.easeOut})
 }})</pre>
-				<p>The plugin makes the calculations for the scroll target postion, and the custom scroll function manages the movement.</p>
-			</div>
-			<div id="force" data-callback="item2">
-				<legend>Force scrolling</legend>
-				<p>Elements which are already on-screen won't be scrolled again...</p>
-				<pre>$('.item-2').scrollIntoView()</pre>
-				<p>...unless you use the <code>force</code> parameter:</p>
-				<pre>$('.item-2').scrollIntoView({force: 'auto'}) // scroll to middle</pre>
-				<pre>$('.item-2').scrollIntoView({force: true}) // scroll to top</pre>
-			</div>
-			<div id="finish">
-				<legend>That's it!</legend>
-				<p>To restart the demo, click <a href="#home">here</a>.</p>
-				<p>To visit the GitHub repository, click <a href="https://github.com/davestewart/jquery-scroll-into-view">here</a>.</p>
-			</div>
-		</div>
-	</section>
+                <p>The plugin makes the calculations for the scroll target postion, and the custom scroll function
+                    manages the movement.</p>
+            </div>
 
-	<section id="elements">
-		<article class="item item-1">
-			<p>Item 1</p>
-		</article>
+            <div id="force" data-scroll=".item-2">
+                <legend>Force scrolling</legend>
+                <p>Elements which are already on-screen won't be scrolled again...</p>
+                <pre>$('.item-2').scrollIntoView()</pre>
+                <p>...unless you use the <code>force</code> parameter:</p>
+                <pre>$('.item-2').scrollIntoView({force: 'auto'}) // scroll to middle</pre>
+                <pre>$('.item-2').scrollIntoView({force: true}) // scroll to top</pre>
+            </div>
 
-		<article class="item item-2">
-			<p>Item 2</p>
-		</article>
+            <div id="finish">
+                <legend>That's it!</legend>
+                <p>To restart the demo, click <a href="#home">here</a>.</p>
+                <p>To visit the GitHub repository, click <a
+                    href="https://github.com/davestewart/jquery-scroll-into-view">here</a>.</p>
+            </div>
 
-		<article class="item item-3">
-			<p>Item 3</p>
-		</article>
+        </div>
+    </section>
 
-		<article class="item item-4">
-			<p>Item 4</p>
-		</article>
+    <section id="elements">
+        <article class="item item-1">
+            <p>Item 1</p>
+        </article>
 
-		<article class="item item-5">
-			<p>Item 5</p>
-		</article>
+        <article class="item item-2">
+            <p>Item 2</p>
+        </article>
 
-		<article class="item item-6 tall">
-			<p>Item 6</p>
-		</article>
+        <article class="item item-3">
+            <p>Item 3</p>
+        </article>
 
-		<article class="item item-7">
-			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="dropdown open">
-					<a href="javascript:void(0)" class="dropdown-toggle" id="drop4" data-toggle="dropdown"> Item 7<span class="caret"></span></a>
-					<ul class="dropdown-menu" id="menu1" aria-labelledby="drop4">
-						<li><a href="javascript:void(0)">Action</a></li>
-						<li><a href="javascript:void(0)">Another action</a></li>
-						<li><a href="javascript:void(0)">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="javascript:void(0)">Separated link</a></li>
-					</ul>
-				</li>
-			</ul>
-		</article>
+        <article class="item item-4">
+            <p>Item 4</p>
+        </article>
 
-	</section>
+        <article class="item item-5">
+            <p>Item 5</p>
+        </article>
+
+        <article class="item item-6 tall">
+            <p>Item 6</p>
+        </article>
+
+        <article class="item item-7">
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="dropdown open">
+                    <a href="javascript:void(0)" class="dropdown-toggle" id="drop4" data-toggle="dropdown"> Item 7<span
+                        class="caret"></span></a>
+                    <ul class="dropdown-menu" id="menu1" aria-labelledby="drop4">
+                        <li><a href="javascript:void(0)">Action</a></li>
+                        <li><a href="javascript:void(0)">Another action</a></li>
+                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:void(0)">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+
+    </section>
 
 </main>
 
 <footer>
-	<p style="text-align: right"><a target="_blank" href="https://github.com/davestewart/jquery-scroll-into-view">github.com/davestewart/jquery-scroll-into-view</a> </p>
+    <p style="text-align: right"><a target="_blank" href="https://github.com/davestewart/jquery-scroll-into-view">github.com/davestewart/jquery-scroll-into-view</a>
+    </p>
 </footer>
 
 <script>
 
-	// -----------------------------------------------------------------------------------------------------------------
-	// helpers
+  // -----------------------------------------------------------------------------------------------------------------
+  // helpers
 
-		function reset () {
-			$('html, body').animate({scrollTop: 0}, 500)
-			$.fn.scrollIntoView.options({
-			    duration: 400,
-				header: null,
-				footer: null,
-				pt: 20,
-				pb: 20
-			})
-		}
+      function reset () {
+        $('html, body').animate({scrollTop: 0}, 500)
+        resetOptions()
+      }
 
-		function updateHeaders (state) {
-		    var options
-		    if (state) {
-                $('header, footer').slideDown()
-                options = { vt: 'header',
-					vb: 'footer'
-                }
-            }
-            else {
-                $('header, footer').slideUp()
-                options = {
-                    vt: null,
-					vb: null
-                }
-			}
-			$.fn.scrollIntoView.options(options)
-		}
+      function resetOptions () {
+        $.fn.scrollIntoView.options({
+          duration: 400,
+          header: null,
+          footer: null,
+          pt: 20,
+          pb: 20
+        })
+      }
 
-		function getDropdownBounds () {
-		    // get bounds
-		    var b = $('.dropdown-menu').get(0).getBoundingClientRect()
+      function setOptions () {
+        $.fn.scrollIntoView.options({
+          duration: 400,
+          header: 'header',
+          footer: 'footer',
+          pt: 20,
+          pb: 20
+        })
+      }
 
-			// clone read-only bounds
-			var bounds = {}
-            for(var name in b) {
-		        bounds[name] = b[name]
-            }
+      function runCallback ($slide, type) {
+        // callback
+        var id = $slide.attr('data-' + type)
+        var fn = window[id]
+        typeof fn === 'function' && fn()
 
-            // update bounds with menu
-            var height = $('.dropdown').outerHeight()
-			bounds.height += height
-			bounds.top -= height
+        // scroll
+        if (type === 'enter') {
+          var selector = $slide.attr('data-scroll')
+          if (selector) {
+            $(selector).scrollIntoView({force: true})
+          }
+        }
+      }
 
-			// return
-			return bounds
-		}
+      function updateHeaders (state) {
+        var options
+        if (state) {
+          $('header, footer').slideDown()
+          options = {
+            vt: 'header',
+            vb: 'footer'
+          }
+        }
+        else {
+          $('header, footer').slideUp()
+          options = {
+            vt: null,
+            vb: null
+          }
+        }
+        $.fn.scrollIntoView.options(options)
+      }
 
-		function item2 () {
-		    $('.item-2').scrollIntoView({force:true})
-		}
+      function getDropdownBounds () {
+        // get bounds
+        var b = $('.dropdown-menu').get(0).getBoundingClientRect()
+
+        // clone read-only bounds
+        var bounds = {}
+        for (var name in b) {
+          bounds[name] = b[name]
+        }
+
+        // update bounds with menu
+        var height = $('.dropdown').outerHeight()
+        bounds.height += height
+        bounds.top -= height
+
+        // return
+        return bounds
+      }
+
+  // -----------------------------------------------------------------------------------------------------------------
+  // navigation
+
+      function back () {
+        go('prev')
+      }
+
+      function next () {
+        go('next')
+      }
+
+      function go (dir) {
+        var $next = typeof dir === "string"
+          ? $slide[dir]()
+          : $('#slides > *').eq(dir)
+
+        if ($next.length) {
+          window.location = '#' + $next.attr('id')
+        }
+      }
+
+      function navigate (id) {
+        var $next = $(id)
+        if ($next.length) {
+          // transition
+          if ($slide) {
+            runCallback($slide, 'exit')
+            $slide.fadeOut(200)
+          }
+          $slide = $next.delay(200).fadeIn()
+          runCallback($slide, 'enter')
+
+          // title
+          document.title = 'Scroll Into View - ' + $slide.find('legend').text()
+
+          // show / hide headers
+          updateHeaders($slide.index() >= $('#headers').index())
+        }
+        else {
+          go(0)
+        }
+      }
+
+  // -----------------------------------------------------------------------------------------------------------------
+  // handlers
+
+      function onHashChange () {
+        location.hash
+          ? navigate(location.hash)
+          : go(0)
+      }
+
+      function onButtonClick () {
+        $(event.target).is('.btn-primary')
+          ? next()
+          : back()
+      }
+
+      function onCodeClick (event) {
+        var code = $(event.currentTarget).data('code')
+        eval('result = ' + code)
+        if (result instanceof jQuery) {
+          $scrolled.removeClass('scrolled')
+          $scrolled = result
+          $scrolled.addClass('scrolled')
+        }
+      }
+
+      function onResize () {
+        var wh = $window.height()
+        var hh = $header.is(':visible') ? $header.outerHeight() : 0
+        var fh = $footer.is(':visible') ? $footer.outerHeight() : 0
+        $('article.tall').css('height', (wh - hh - fh + 100) + 'px')
+      }
+
+  // -----------------------------------------------------------------------------------------------------------------
+  // main
+
+      // elements
+      var $window = $(window)
+      var $header = $('header').hide()
+      var $footer = $('footer').hide()
+      var $slides = $('#slides').children().hide()
+      var $elements = $('#elements').children()
+      var $scrolled = $()
+      var $slide, result
+
+      // add slide navigation
+      $('body').on('click', '.btn', onButtonClick)
+      $slides
+        .each(function (i, e) {
+          var $slide = $(e)
+          if (i > 0) {
+            $slide.append('<button class="btn btn-sm">Prev</button>')
+          }
+          if (i > 0 && i < $slides.length - 1) {
+            $slide.append('<button class="btn btn-primary btn-sm">Next</button>')
+          }
+        })
+
+      // build contents
+      $('#contents').html(function () {
+        return $('#slides')
+          .children()
+          .filter(':not(#home, #finish)')
+          .map((i, e) => {
+            var id = $(e).attr('id')
+            var title = $(e).find('legend').text()
+            return '<li><a href="#' + id + '">' + title + '</a></li>'
+          })
+          .toArray()
+          .join('\n')
+      })
+
+      // syntax highlighting
+      hljs.initHighlightingOnLoad()
+      $('pre')
+        .each(function (i, e) {
+          $(this).data('code', $(this).text())
+        })
+        .wrap('<div class="code">')
+        .wrapInner('<code class="js">')
 
 
-	// -----------------------------------------------------------------------------------------------------------------
-	// navigation
-
-		function back () {
-		    go('prev')
-		}
-
-		function next () {
-		    go('next')
-		}
-
-		function go (dir) {
-		    var $next = typeof dir === "string"
-				? $slide[dir]()
-				: $('#slides > *').eq(dir)
-
-			if($next.length) {
-                window.location = '#' + $next.attr('id')
-			}
-		}
-
-		function navigate (id) {
-		    var $next = $(id)
-			if($next.length) {
-		        // transition
-		        if ($slide) {
-					$slide.fadeOut(200)
-				}
-				$slide = $next.delay(200).fadeIn()
-
-				// title
-				document.title = 'Scroll Into View - ' + $slide.find('legend').text()
-
-				// run and callback
-				var id = $slide.attr('data-callback')
-				var fn = window[id]
-				typeof fn === 'function' && fn()
-
-				// show / hide headers
-				updateHeaders($slide.index() >= $('#headers').index())
-			}
-			else {
-		        go(0)
-			}
-		}
+      // add script runners
+      $('pre:not(.static)')
+        .on('click', onCodeClick)
 
 
-	// -----------------------------------------------------------------------------------------------------------------
-	// handlers
-
-		function onHashChange () {
-            location.hash
-				? navigate(location.hash)
-				: go(0)
-		}
-
-		function onButtonClick () {
-            $(event.target).is('.btn-primary')
-                ? next()
-                : back()
-		}
-
-		function onCodeClick (event) {
-			var code = $(event.currentTarget).data('code')
-			eval('result = ' + code)
-			if (result instanceof jQuery) {
-				$scrolled.removeClass('scrolled')
-				$scrolled = result
-				$scrolled.addClass('scrolled')
-			}
-		}
-
-		function onResize () {
-		    var wh = $window.height()
-            var hh = $header.is(':visible') ? $header.outerHeight() : 0
-            var fh = $footer.is(':visible') ? $footer.outerHeight() : 0
-            $('article.tall').css('height', (wh - hh - fh + 100) + 'px')
-		}
-
-
-	// -----------------------------------------------------------------------------------------------------------------
-	// main
-
-		// elements
-		var $window = $(window)
-		var $header = $('header').hide()
-		var $footer = $('footer').hide()
-		var $slides = $('#slides').children().hide()
-		var $elements = $('#elements').children()
-		var $scrolled = $()
-		var $slide, result
-
-		// add slide navigation
-		$('body').on('click', '.btn', onButtonClick)
-    	$slides
-			.each(function (i, e) {
-				var $slide = $(e)
-				if (i > 0) {
-					$slide.append('<button class="btn btn-sm">Prev</button>')
-				}
-				if (i > 0 && i < $slides.length - 1) {
-					$slide.append('<button class="btn btn-primary btn-sm">Next</button>')
-				}
-			})
-
-		// build contents
-		$('#contents').html(function () {
-            return $('#slides')
-				.children()
-				.filter(':not(#home, #finish)')
-				.map((i, e) => {
-					var id = $(e).attr('id')
-					var title = $(e).find('legend').text()
-					return '<li><a href="#' + id + '">' + title + '</a></li>'
-				})
-				.toArray()
-				.join('\n')
-		})
-
-		// add script runners
-		$('pre')
-			.each(function (i, e) {
-			  	$(this).data('code', $(this).text())
-			})
-			.on('click', onCodeClick)
-			.wrapInner('<code class="js">')
-			.wrap('<div class="code">')
-
-		// syntax highlighting
-    	hljs.initHighlightingOnLoad()
-
-		// start
-		$(window)
-			.on('hashchange', onHashChange).trigger('hashchange')
-			.on('resize', onResize).trigger('resize')
+      // start
+      $(window)
+        .on('hashchange', onHashChange).trigger('hashchange')
+        .on('resize', onResize).trigger('resize')
 
 </script>
 </body>

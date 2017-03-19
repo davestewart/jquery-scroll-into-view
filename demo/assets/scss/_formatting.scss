@@ -23,26 +23,27 @@ input[type="number"] {
 }
 
 div.code {
-  margin-left: 30px;
-  margin-top: 30px;
+  margin: 20px 0 0 30px;
 }
 
 div.code + div.code {
-  margin-top: 0px;
+  margin-top: 0 !important;
+}
+
+div.code + p {
+  margin-top: 10px;
 }
 
 pre {
   background: none;
   border: none;
   border-radius: 0;
-  border-left: 5px solid #DDD;
+  border-left: 5px solid $gray-lighter;
   padding: 10px;
   color: #000;
   font-size: 12px;
   transition: 0.3s all;
-  cursor: pointer;
-  width: auto;
-  display: inline-block;
+  cursor: default;
   :after {
     clear: both;
   }
@@ -52,11 +53,22 @@ pre {
   }
 }
 
-pre:hover {
-  background-color: $gray-lighter;
-  color: $brand-info;
-  border-left-color: $brand-info;
-  border-radius: 4px;
+pre:not(.static) {
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray-lighter;
+    border-left-color: $brand-info;
+    color: $brand-info;
+    border-radius: 4px;
+  }
+}
+
+pre.static {
+  border: none;
+  padding: 0;
 }
 
 button {

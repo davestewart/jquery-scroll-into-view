@@ -19,7 +19,7 @@ header, footer {
   position: fixed;
   left: 0;
   padding: 15px;
-  background: $gray-lighter;
+  background: #FFF;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 10000;
 
@@ -31,21 +31,21 @@ header, footer {
 
 header {
   top: 0;
-  // border-bottom: 1px solid grey;
+  //border-bottom: 1px solid $gray-light;
 }
 
 footer {
   bottom: 0;
-  // border-top: 1px solid grey;
+  //border-top: 1px solid $gray-light;
 }
 
 #help {
   position: fixed;
   width: 650px;
-  top:140px;
+  top: 140px;
 
   > div {
-    margin-left:30px;
+    margin-left: 30px;
   }
 }
 

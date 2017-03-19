@@ -14,7 +14,7 @@ header, footer {
   position: fixed;
   left: 0;
   padding: 15px;
-  background: #ecf0f1;
+  background: #FFF;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 10000; }
   header p, footer p {
@@ -57,34 +57,42 @@ input[type="number"] {
   width: 40px; }
 
 div.code {
-  margin-left: 30px;
-  margin-top: 30px; }
+  margin: 20px 0 0 30px; }
 
 div.code + div.code {
-  margin-top: 0px; }
+  margin-top: 0 !important; }
+
+div.code + p {
+  margin-top: 10px; }
 
 pre {
   background: none;
   border: none;
   border-radius: 0;
-  border-left: 5px solid #DDD;
+  border-left: 5px solid #ecf0f1;
   padding: 10px;
   color: #000;
   font-size: 12px;
   transition: 0.3s all;
-  cursor: pointer;
-  width: auto;
-  display: inline-block; }
+  cursor: default; }
   pre :after {
     clear: both; }
   pre code, pre code * {
     background: none !important; }
 
-pre:hover {
-  background-color: #ecf0f1;
-  color: #3498DB;
-  border-left-color: #3498DB;
-  border-radius: 4px; }
+pre:not(.static) {
+  display: inline-block;
+  width: auto;
+  cursor: pointer; }
+  pre:not(.static):hover {
+    background-color: #ecf0f1;
+    border-left-color: #3498DB;
+    color: #3498DB;
+    border-radius: 4px; }
+
+pre.static {
+  border: none;
+  padding: 0; }
 
 button {
   outline: none !important;
