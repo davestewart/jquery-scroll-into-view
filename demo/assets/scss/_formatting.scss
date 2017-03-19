@@ -1,0 +1,62 @@
+@import 'colors';
+
+h1 {
+  border-bottom: 1px solid #EEE;
+  padding: 0 0 20px 30px;
+  margin: 0 0 30px 0;
+}
+
+h3 {
+  border-bottom: 1px solid #EEE;
+  padding: 0 0 10px 30px;
+  margin: 20px 0 10px -30px;
+  color: #18bc9c;
+  font-size: 20px;
+}
+
+label {
+  margin-left: 10px;
+}
+
+input[type="number"] {
+  width: 40px;
+}
+
+div.code {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+div.code + div.code {
+  margin-top: 0px;
+}
+
+pre {
+  background: none;
+  border: none;
+  border-radius: 0;
+  border-left: 5px solid #DDD;
+  padding: 10px;
+  color: #000;
+  font-size: 12px;
+  transition: 0.3s all;
+  cursor: pointer;
+  width: auto;
+  display: inline-block;
+  :after {
+    clear: both;
+  }
+}
+
+pre:hover {
+  background-color: $gray-lighter;
+  color: $brand-info;
+  border-left-color: $brand-info;
+  border-radius: 4px;
+}
+
+button {
+  outline: none !important;
+  margin-top: 30px;
+  margin-right:10px;
+}

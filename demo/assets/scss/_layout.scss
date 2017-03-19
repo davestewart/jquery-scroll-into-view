@@ -1,0 +1,55 @@
+@import 'colors';
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  min-width: 670px;
+  max-width: 1000px;
+  margin: 200px auto 1000px;
+}
+
+main {
+  position: relative;
+}
+
+header, footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  padding: 15px;
+  background: $gray-lighter;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+
+  p {
+    color: $brand-info;
+    margin: 0;
+  }
+}
+
+header {
+  top: 0;
+  // border-bottom: 1px solid grey;
+}
+
+footer {
+  bottom: 0;
+  // border-top: 1px solid grey;
+}
+
+#help {
+  position: fixed;
+  width: 650px;
+  top:140px;
+
+  > div {
+    margin-left:30px;
+  }
+}
+
+#elements {
+  width: 300px;
+  margin-left: 700px;
+}
