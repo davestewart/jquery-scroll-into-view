@@ -7,14 +7,13 @@
     "styles": "node-sass demo/assets/scss/styles.scss demo/assets/css/styles.css -w",
     "dev": "concurrently --kill-others \"npm run scripts\" \"npm run styles\"",
     "build": "rollup -c rollup.build.js",
-    "demo": "lite-server"
+    "demo": "node_modules/.bin/browser-sync start --config bs-config.js"
   },
   "files": [
     "*.js"
   ],
   "dependencies": {
-    "jquery": ">=1.0.0",
-    "uglify-js": "^2.8.13"
+    "jquery": ">=1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -28,6 +27,7 @@
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2",
+    "uglify-js": "^2.8.13",
     "yargs": "^7.0.2"
   },
   "title": "jQuery Scroll Into View",
