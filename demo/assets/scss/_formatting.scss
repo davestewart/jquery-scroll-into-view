@@ -46,6 +46,10 @@ pre {
   :after {
     clear: both;
   }
+
+  code, code * {
+    background: none !important;
+  }
 }
 
 pre:hover {

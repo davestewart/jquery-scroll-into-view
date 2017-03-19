@@ -2,40 +2,42 @@
 <html lang="en">
 <head>
 	<title>jQuery - Scroll into View</title>
+	<!-- 3rd party -->
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/styles.css" rel="stylesheet">
 	<script src="assets/js/jquery.min.js"></script>
+
+	<!-- custom scroll -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
+
+	<!-- syntax highlighting -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/paraiso-light.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+
+	<!-- lib -->
+	<link href="assets/css/styles.css" rel="stylesheet">
 	<script src="lib/jquery.scroll-into-view.js"></script>
-	<script>!$.fn.scrollIntoView && document.write('<script src="https://cdn.rawgit.com/davestewart/jquery-scroll-into-view/c53c2f0b/lib/jquery.scroll-into-view.min.js"></scr' + 'ipt>')</script>
+	<script>!$.fn.scrollIntoView && document.write('<script src="https://cdn.rawgit.com/davestewart/jquery-scroll-into-view/c53c2f0b/lib/jquery.scroll-into-view.js"></scr' + 'ipt>')</script>
 </head>
 <body>
 
 <header>
-	<p><a href="#start">jQuery | Scroll Into View</a></p>
+	<p><a href="#home">Home</a></p>
 </header>
 
 <main>
 
 	<section id="help">
-		<h1>Scroll Into View</h1>
+		<h1>Scroll Into View Demo</h1>
 		<div id="slides">
-			<div id="start" data-callback="reset">
-				<legend>Demo</legend>
-				<p>Welcome to the "Scroll Into View" demo.</p>
+			<div id="home" data-callback="reset">
+				<legend>Home</legend>
+				<p>Welcome to the jQuery Scroll Into View demo.</p>
 				<p>The available demos are:</p>
-				<ul>
-					<li><a href="#overview">Overview</a></li>
-					<li><a href="#force">Force scrolling</a></li>
-					<li><a href="#headers">Headers</a></li>
-					<li><a href="#padding">Padding</a></li>
-					<li><a href="#groups">Groups</a></li>
-					<li><a href="#absolute">Absolutely-positioned elements</a></li>
-					<li><a href="#scroll">Custom scroll function</a></li>
-					<li><a href="#defaults">Defaults</a></li>
+				<ul id="contents">
+					<!-- populated dynamically -->
 				</ul>
-				<p>Make sure to click the code samples to see what they do:</p>
+				<p>Note that <strong>all</strong> code samples are <strong>clickable</strong> !</p>
 				<pre>$('.item-4').scrollIntoView()</pre>
 				<button class="btn btn-primary btn-sm">Start</button>
 			</div>
@@ -49,18 +51,25 @@
 				<p>Elements which are taller than the viewport will be scrolled to show the top:</p>
 				<pre>$('.tall').scrollIntoView()</pre>
 			</div>
-			<div id="force" data-callback="bottom">
-				<legend>Force scrolling</legend>
-				<p>Elements which are already on-screen won't be scrolled again...</p>
-				<pre>$('.item-3').scrollIntoView()</pre>
-				<p>...unless you use the <code>force</code> parameter:</p>
-				<pre>$('.item-3').scrollIntoView({force: 'auto'}) // scroll to middle</pre>
-				<pre>$('.item-3').scrollIntoView({force: true}) // scroll to top</pre>
+			<div id="defaults">
+				<legend>Defaults</legend>
+				<p>Set per-call parameters by passing options:</p>
+				<pre>$('.item-3').scrollIntoView({pt: 'auto', force: true}) // this call</pre>
+				<p>Set options for <strong>all future calls</strong>, pass options directly to the plugin prototype:</p>
+				<pre>$.fn.scrollIntoView.options({ // every call
+    duration: 1000,
+    force: true,
+    pt: 'auto',
+    pb: 50
+})</pre>
+				<p>View defaults by calling the function without parameters:</p>
+				<pre>console.log($.fn.scrollIntoView.options())</pre>
+				<p>Available options can be seen in the <a href="https://github.com/davestewart/jquery-scroll-into-view/blob/master/README.md#available-options">online docs</a>.</p>
 			</div>
 			<div id="headers">
 				<legend>Headers</legend>
 				<p>The plugin is designed to work with headers and footers:</p>
-				<pre>$('.item-1').scrollIntoView()</pre>
+				<pre>$('.item-2').scrollIntoView()</pre>
 				<pre>$('.item-5').scrollIntoView()</pre>
 				<p>To set <a href="#defaults">defaults</a> for header and footer, set <code>vt</code> and <code>vb</code> (viewport top and bottom):</p>
 				<pre>$.fn.scrollIntoView.options({vt: 'header', vb: 'footer'}) // preferred</pre>
@@ -102,21 +111,17 @@
 }})</pre>
 				<p>The plugin makes the calculations for the scroll target postion, and the custom scroll function manages the movement.</p>
 			</div>
-			<div id="defaults">
-				<legend>Defaults</legend>
-				<p>Set defaults for the plugin by passing options directly to the plugin</p>
-				<pre>$.fn.scrollIntoView.options({
-    duration: 1000,
-    pt: 20,
-    pb: 50
-})</pre>
-				<p>View defaults by calling the function without parameters:</p>
-				<pre>console.log($.fn.scrollIntoView.options())</pre>
-				<p>Available options can be seen in the <a href="https://github.com/davestewart/jquery-scroll-into-view/blob/master/README.md#available-options">online docs</a>.</p>
+			<div id="force" data-callback="item2">
+				<legend>Force scrolling</legend>
+				<p>Elements which are already on-screen won't be scrolled again...</p>
+				<pre>$('.item-2').scrollIntoView()</pre>
+				<p>...unless you use the <code>force</code> parameter:</p>
+				<pre>$('.item-2').scrollIntoView({force: 'auto'}) // scroll to middle</pre>
+				<pre>$('.item-2').scrollIntoView({force: true}) // scroll to top</pre>
 			</div>
 			<div id="finish">
 				<legend>That's it!</legend>
-				<p>To restart the demo, click <a href="#start">here</a>.</p>
+				<p>To restart the demo, click <a href="#home">here</a>.</p>
 				<p>To visit the GitHub repository, click <a href="https://github.com/davestewart/jquery-scroll-into-view">here</a>.</p>
 			</div>
 		</div>
@@ -223,6 +228,10 @@
 			return bounds
 		}
 
+		function item2 () {
+		    $('.item-2').scrollIntoView({force:true})
+		}
+
 
 	// -----------------------------------------------------------------------------------------------------------------
 	// navigation
@@ -287,7 +296,7 @@
 		}
 
 		function onCodeClick (event) {
-			var code = $(event.target).text()
+			var code = $(event.currentTarget).data('code')
 			eval('result = ' + code)
 			if (result instanceof jQuery) {
 				$scrolled.removeClass('scrolled')
@@ -322,17 +331,38 @@
 			.each(function (i, e) {
 				var $slide = $(e)
 				if (i > 0) {
-					$slide.append('<button class="btn btn-sm">Back</button>')
+					$slide.append('<button class="btn btn-sm">Prev</button>')
 				}
 				if (i > 0 && i < $slides.length - 1) {
 					$slide.append('<button class="btn btn-primary btn-sm">Next</button>')
 				}
 			})
 
+		// build contents
+		$('#contents').html(function () {
+            return $('#slides')
+				.children()
+				.filter(':not(#home, #finish)')
+				.map((i, e) => {
+					var id = $(e).attr('id')
+					var title = $(e).find('legend').text()
+					return '<li><a href="#' + id + '">' + title + '</a></li>'
+				})
+				.toArray()
+				.join('\n')
+		})
+
 		// add script runners
 		$('pre')
+			.each(function (i, e) {
+			  	$(this).data('code', $(this).text())
+			})
 			.on('click', onCodeClick)
+			.wrapInner('<code class="js">')
 			.wrap('<div class="code">')
+
+		// syntax highlighting
+    	hljs.initHighlightingOnLoad()
 
 		// start
 		$(window)

@@ -1,12 +1,14 @@
 # Scroll Into View
 
-#### jQuery plugin to scroll an element into view
+### Abstract 
 
-Scrolls an element into view, whether it's partially or completely off screen.
+jQuery plugin to scroll an element into view, when it's partially or completely off screen.
 
 This is useful for tasks where elements may become available or change shape, such as forms or custom dropdowns, especially on mobile where there is not much room.
 
 Elements will, by-default, scroll onto the screen just enough that the whole element (or selection of elements) is visible. Where an element is taller than the available viewport, it will scroll so the top of the element is visible.
+
+### Features
 
 The plugin has options for:
 
@@ -16,6 +18,15 @@ The plugin has options for:
  - custom scroll function, passing the calculations made by the plugin
  - forcing scrolling, even if on-screen
  - scroll duration
+
+### Demo
+
+View the live demo at:
+
+- [jquery.scrollintoview.davestewart.io](http://jquery.scrollintoview.davestewart.io)
+
+To run the demo locally, see the [readme](demo/README.md) in the demo folder.
+
 
 ## Usage
 

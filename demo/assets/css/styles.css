@@ -77,6 +77,8 @@ pre {
   display: inline-block; }
   pre :after {
     clear: both; }
+  pre code, pre code * {
+    background: none !important; }
 
 pre:hover {
   background-color: #ecf0f1;
